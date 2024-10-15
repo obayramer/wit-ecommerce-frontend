@@ -12,7 +12,11 @@ module.exports = {
       sm: { max: "770px" },
 
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "contact-bg": "url('./src/assets/carousel.png')",
+      },
+    },
   },
   plugins: [],
 };
@@ -20,7 +24,7 @@ module.exports = {
   tablet: { max: "767px" },
 
   laptop: "1024px",
-  
+
   desktop: "1280px",
 
 },*/
