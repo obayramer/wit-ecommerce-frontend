@@ -1,69 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-html,
-body,
 #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
-h1 {
-  font-size: 36px; /* 36px */
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
-h2 {
-  font-size: 30px; /* 30px */
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
-h3 {
-  font-size: 24px;
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
-h4 {
-  font-size: 20px;
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-h5 {
-  font-size: 16px;
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
-h6 {
-  font-size: 14px;
+
+.card {
+  padding: 2em;
 }
-.navbar {
-  padding: 1rem;
-}
-/* Dropdown two-column layout */
-.dropdown-menu-wrapper {
-  display: flex;
-  padding: 1rem;
-}
-.dropdown-column {
-  flex: 1;
-  padding: 0 10px;
-}
-.dropdown-column h6 {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.navbar .dropdown-item {
-  padding: 5px 10px;
-}
-/* Right aligned nav styling */
-.right-nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-.right-nav .nav-link {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: 500;
-}
-.right-nav .nav-link svg {
-  font-size: 1.2rem;
-}
-.custom-nav-dropdown {
-  font-weight: 700;
-  color: #737373;
+
+.read-the-docs {
+  color: #888;
 }
