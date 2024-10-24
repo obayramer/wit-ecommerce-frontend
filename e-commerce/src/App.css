@@ -1,96 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
-  text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.BannerSlide .bg {
+  background: rgb(150, 233, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(150, 233, 251, 1) 50%,
+    rgba(171, 236, 214, 1) 100%
+  );
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-.img-absolute {
-  @apply h-full w-full object-cover absolute translate-x-1/2 right-1/2;
-}
-
-.container-common {
-  @apply my-0 mx-auto;
-}
-
-.container-small {
-  @apply container-common max-w-[1050px];
-}
-
-.container-medium {
-  @apply container-common max-w-[1200px];
-}
-
-.container-big {
-  @apply container-common max-w-[1440px];
-}
-
-.btn-md {
-  @apply py-[0.75em] px-[2em] text-[1.25rem] rounded-[5px];
-}
-.btn-small-wide {
-  @apply py-[1.07em] px-[2.86em] text-[0.875rem] rounded-[5px];
-}
-
-.btn-small { 
-  @apply py-[0.714em] px-[1.43em] text-[0.875rem] rounded-[5px];
-}
-
-.btn-success {
-  @apply text-clr-light bg-bgclr-success;
-}
-.btn-primary {
-  @apply text-clr-light bg-bgclr-primary;
-}
-
-.btn-primary-outline {
-  @apply text-clr-primary border-[1px] border-clr-primary;
-}
-
-.btn-light-outline-transparent {
-  @apply text-clr-light border-[1px] border-clr-light;
-}
-
-.btn-success-outline {
-  @apply text-clr-success bg-bgclr-light border-[1px] border-clr-success;
-}
-
-.pill-shape {
-  @apply rounded-[50rem];
+.PricingPlan:focus button {
+  background-color: #23a6f0;
 }
