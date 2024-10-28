@@ -1,4 +1,3 @@
-import InnerHeader from "../components/layout/InnerHeader.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowTurnDown,
@@ -7,6 +6,7 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/layout/Footer.jsx";
+import Header from "../components/layout/Header.jsx";
 import {
   faInstagram,
   faLinkedin,
@@ -17,8 +17,7 @@ import {
 function Contact({ data }) {
   const { section1, section2, section3 } = data.contact;
    return ( <div className="Contact">
-    <InnerHeader data={data} />
-
+    <Header data={data} />
     <div className="pt-28 w-[73%] mx-auto flex sm:w-full sm:flex-col sm:px-8 sm:text-center sm:gap-10">
         <div className="flex flex-col gap-9 font-bold sm:items-center">
         <h5 className="text-sm">{section1.subtitle}</h5>

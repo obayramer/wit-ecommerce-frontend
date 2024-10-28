@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import Clients from "../components/layout/Clients.jsx";
 import Trial from "../components/layout/Trial.jsx";
-import InnerHeader from "../components/layout/InnerHeader.jsx";
+import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer.jsx";
 
 function Pricing({ data }) {
@@ -15,11 +15,10 @@ function Pricing({ data }) {
   const { title, description, monthly, yearly, save, plans } =
     pricing.pricingplans;
   const faqs = pricing.faqs;
-  const trial = pricing.trial;
 
   return (
     <div className="Pricing">
-      <InnerHeader data={data} />
+          <Header data={data} />
       <div className="p-12 font-bold flex flex-col gap-4 items-center sm:text-center">
         <h5 className="text-base text-accent">{pricing.subtitle}</h5>
         <h1 className="text-[3.6rem] leading-[5rem] sm:text-4xl">
@@ -81,7 +80,10 @@ function Pricing({ data }) {
         <div className="w-[73%] mx-auto flex flex-wrap justify-center gap-7 sm:w-full sm:flex-col sm:px-10">
           {faqs.qas.map((qa, index) => {
             return (
-              <div className="max-w-[45%] p-6 flex gap-5 sm:max-w-full">
+              <div
+              className="max-w-[45%] p-6 flex gap-5 sm:max-w-full"
+              key={index}
+            >
                 <FontAwesomeIcon
                   icon={faChevronRight}
                   className="text-secondary text-base sm:hidden"
