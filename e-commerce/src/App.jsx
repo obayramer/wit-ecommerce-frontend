@@ -8,26 +8,40 @@ import Pricing from "./pages/Pricing";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
 import Product from "./pages/Product";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const language = "en";
   const data = useSelector((store) => store[language]);
-
   return (
-    <Router>
-      <div className="App text-primary overflow-hidden">
-        <Switch>
-          <Route exact path="/" render={() => <Home data={data} />} />
-          <Route path="/about" render={() => <About data={data} />} />
-          <Route path="/contact" render={() => <Contact data={data} />} />
-          <Route path="/pricing" render={() => <Pricing data={data} />} />
-          <Route path="/productlist" render={() => <ProductList data={data} />} />
-          <Route path="/productlist/:productID" render={() => <Product data={data} />} />
-          <Route path="/team" render={() => <Team data={data} />} />
-        </Switch>
-      </div>
-    </Router>
+    <div className="App text-primary overflow-hidden">
+      <Switch>
+        <Route exact path="/">
+          <Home data={data} />
+        </Route>
+        <Route path="/about">
+          <About data={data} />
+        </Route>
+        <Route path="/contact">
+          <Contact data={data} />
+        </Route>
+        <Route path="/pricing">
+          <Pricing data={data} />
+        </Route>
+        <Route path="/productlist">
+          <ProductList data={data} />
+        </Route>
+        <Route path="/productlist/:productID">
+          <Product data={data} />
+        </Route>
+        <Route path="/signup">
+          <SignUp data={data} />
+        </Route>
+        <Route path="/team">
+          <Team data={data} />
+        </Route>
+      </Switch>
+    </div>
   );
 }
-
 export default App;

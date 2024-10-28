@@ -50,7 +50,7 @@ function Header({ data }) {
       <div className="header-nav flex justify-between items-center py-4 px-6 sm:flex-col">
         <div className="w-fit flex justify-between sm:w-full">
           <h1
-            className="text-2xl"
+            className="text-2xl cursor-pointer"
             onClick={() => {
               history.push("/");
             }}
@@ -95,12 +95,18 @@ function Header({ data }) {
                 : "nav-right-side text-secondary flex gap-[1rem] sm:hidden"
             }
           >
-            <Link to="/">
+             <div>
               <FontAwesomeIcon icon={faUser} />
               <span>{rightData.login}</span>
               <span> / </span>
-              <span>{rightData.register}</span>
-            </Link>
+              <span
+                onClick={() => {
+                  history.push("/signup");
+                }}
+              >
+                {rightData.registr}
+              </span>
+            </div>
             <Link to="/">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Link>
