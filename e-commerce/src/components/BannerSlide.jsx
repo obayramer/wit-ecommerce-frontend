@@ -35,14 +35,14 @@ function BannerSlide({ data }) {
             <a href="#slide2" className="btn btn-circle bg-transparent">
               <FontAwesomeIcon
                 icon={faChevronLeft}
-                style={{ color: "#ffffff" }}
+                style={{ color: "#000000" }}
                 className="text-5xl"
               />
             </a>
             <a href="#slide2" className="btn btn-circle bg-transparent">
             <FontAwesomeIcon
                 icon={faChevronRight}
-                style={{ color: "#ffffff" }}
+                style={{ color: "#000000" }}
                 className="text-5xl"
               />
             </a>
@@ -71,14 +71,14 @@ function BannerSlide({ data }) {
               <a href="#slide1" className="btn btn-circle bg-transparent">
               <FontAwesomeIcon
                   icon={faChevronLeft}
-                  style={{ color: "#ffffff" }}
+                  style={{ color: "#000000"}}
                   className="text-5xl"
                 />
               </a>
               <a href="#slide1" className="btn btn-circle bg-transparent">
               <FontAwesomeIcon
                   icon={faChevronRight}
-                  style={{ color: "#ffffff" }}
+                  style={{ color: "#000000" }}
                   className="text-5xl"
                 />
               </a>
