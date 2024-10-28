@@ -1,4 +1,4 @@
-import InnerHeader from "../components/layout/InnerHeader.jsx";
+import Header from "../components/layout/Header";
 import Clients from "../components/layout/Clients.jsx";
 import Footer from "../components/layout/Footer.jsx";
 import TeamCard from "../components/TeamCard";
@@ -10,7 +10,7 @@ function About({ data }) {
   const clients = data.clients;
 
   return (   <div className="About">
-    <InnerHeader data={data} />
+     <Header data={data} />
 
     <div className="w-[73%] mx-auto flex justify-between sm:w-full sm:px-4 sm:flex-col">
         <div className="font-bold flex flex-col gap-9 py-28 h-fit sm:w-full sm:items-center sm:text-center sm:px-14">

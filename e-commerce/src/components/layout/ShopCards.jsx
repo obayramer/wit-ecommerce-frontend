@@ -1,37 +1,39 @@
-function renderCard(card, width, height, key, showContent = true) {
-  return (
-    <div key={key} className="relative" style={{ width: width, height: height }}>
-      <img src={card.img} alt="" className="w-full h-full object-cover" />
-      {showContent && (
-        <div className="font-bold text-white bg-[#23a5f0c4] flex flex-col gap-5 absolute left-0 bottom-0 h-fit w-fit pl-[10%] pr-[25%] pt-[10%] pb-[7%] sm:w-full">
-          <h4 className="text-2xl">{card.message}</h4>
-          <button className="border border-solid rounded-md border-white py-4 px-10 text-sm">
-            {card.button}
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
 function ShopCards({ data }) {
+  const { cards } = data;
   return (
-    <div className="ShopCards py-[5rem] flex justify-center">
-      {/* Shopcard 1 - Mesaj ve buton gösterilsin */}
-      <div className="shopcard1" style={{ width: "611px", height: "572px" }}>
-        {renderCard(data.cards[0], "611px", "572px", 0, true)} {/* showContent true */}
-      </div>
+    <div className="ShopCards py-[5rem]">
+       <div className="w-full h-[36rem] flex justify-center gap-[1.4rem] sm:h-fit sm:px-5 sm:flex-col">
+        <div className="relative">
+          <img src={cards[0].img} className="object-cover" alt=""/>
+          <div className="font-bold text-white bg-[#23a5f0c4] flex flex-col gap-5 absolute left-0 bottom-0 h-fit w-fit pl-[10%] pr-[25%] pt-[10%] pb-[7%] sm:w-full">
+            <h4 className="text-2xl">{cards[0].message}</h4>
+            <button className="border border-solid rounded-md border-white py-4 px-10 text-sm">
+              {cards[0].button}
+            </button>
+          </div>
+        </div>
 
-      {/* Shopcard 2 ve 3 alanı */}
-      <div className="ml-6 flex flex-col justify-between">
-        {/* Shopcard 2 - Mesaj ve buton gösterilsin */}
-        {renderCard(data.cards[1], "557px", "289px", 1, true)}
+        <div className="flex flex-col h-full justify-between sm:gap-[1.4rem]">
+          <div className="relative h-[48%] overflow-hidden sm:h-fit">
+            <img src={cards[1].img} className="object-cover w-full" alt="" />
+            <div className="font-bold text-white bg-[#23a5f0c4] flex flex-col gap-5 absolute left-0 bottom-0 h-fit w-fit pl-[10%] pr-[25%] pt-[10%] pb-[7%] sm:w-full">
+              <h4 className="text-2xl">{cards[1].message}</h4>
+              <button className="border border-solid rounded-md border-white py-4 px-10 text-sm">
+                {cards[1].button}
+              </button>
+            </div>
+          </div>
 
-        {/* Boşluk */}
-        <div className="h-[22px]"></div>
-
-        {/* Shopcard 3 - Mesaj ve buton gösterilsin */}
-        {renderCard(data.cards[2], "557px", "261px", 2, true)}
+          <div className="relative h-[48%] overflow-hidden sm:h-fit">
+            <img src={cards[2].img} className="object-cover w-full" alt="" />
+            <div className="font-bold text-white bg-[#23a5f0c4] flex flex-col gap-5 absolute left-0 bottom-0 h-fit w-fit pl-[10%] pr-[25%] pt-[10%] pb-[7%] sm:w-full">
+              <h4 className="text-2xl">{cards[2].message}</h4>
+              <button className="border border-solid rounded-md border-white py-4 px-10 text-sm">
+                {cards[2].button}
+              </button>
+            </div>
+            </div>
+        </div>
       </div>
     </div>
   );
