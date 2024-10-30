@@ -48,33 +48,10 @@ export default function dataReducer() {
           },
         },
   
-        categories: [
-          {
-            name: "CLOTHES",
-            noitems: "5 Items",
-            img: "./categories/clothes1.jpg",
-          },
-          {
-            name: "CLOTHES",
-            noitems: "5 Items",
-            img: "./categories/clothes2.jpg",
-          },
-          {
-            name: "CLOTHES",
-            noitems: "5 Items",
-            img: "./categories/clothes3.jpg",
-          },
-          {
-            name: "CLOTHES",
-            noitems: "5 Items",
-            img: "./categories/clothes4.jpg",
-          },
-          {
-            name: "CLOTHES",
-            noitems: "5 Items",
-            img: "./categories/clothes5.jpg",
-          },
-        ],
+        categories: {
+          title: "Shop",
+          prev: "Home",
+        },
   
         clients: {
           title: "Big Companies Are Here",
@@ -310,6 +287,10 @@ export default function dataReducer() {
                 registr: "Register",
               },
             },
+            shopdropdown: {
+              header1: "Women",
+              header2: "Men",
+            },
           },
         },
 
@@ -481,7 +462,7 @@ export default function dataReducer() {
           },
   
           nav: ["Description", "Additional Information", "Reviews"],
-          description: {
+          desc: {
             img: "./product/cover/desc.png",
             title1: "the quick fox jumps over",
             p: [
@@ -570,172 +551,18 @@ export default function dataReducer() {
           title1: "Featured Products",
           title2: "BESTSELLER PRODUCTS",
           description: "Problems trying to resolve the conflict between",
-          products: [
-            {
-              img: "./productcards/product-cover-1.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-2.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-3.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-4.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-5.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-6.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-7.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-8.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-9.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./productcards/product-cover-10.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-          ],
           button: "LOAD MORE PRODUCTS",
         },
   
         shop: {
-          resultno: "Showing all 12 results",
+          showing: "Showing all ",
+          results: " results",
           views: "Views:",
-          fopt1: "Popularity",
-          button: "Filter",
-          products: [
-            {
-              img: "./products/product1.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product2.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product3.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product4.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product5.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product6.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product7.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product8.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product9.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product10.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product11.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-            {
-              img: "./products/product12.png",
-              header: "Graphic Design",
-              department: "English Department",
-              oldprice: "$16.48",
-              newprice: "$6.48",
-            },
-          ],
+          p_asc: "Price (Low to High)",
+          p_desc: "Price (High to Low)",
+          r_asc: "Rating (Low to High)",
+          r_desc: "Rating (High to Low)",
+          button: "Filter",    
           pagebuttons: {
             first: "First",
             next: "Next",

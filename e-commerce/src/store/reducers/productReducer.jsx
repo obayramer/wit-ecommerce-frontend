@@ -1,49 +1,58 @@
 import {
     SET_ACTIVE_PAGE,
-    SET_FETCH_STATE,
+    SET_CATEGORIES,
     SET_PAGE_COUNT,
     SET_PRODUCT_LIST,
-    SET_TOTAL_PRODUCT_COUNT,
   } from "../actions/productActions.jsx";
-  
+  import fetchStates from "../fetchStates.jsx";
   const initialState = {
-    productList: [],
-    totalProductCount: 0,
-    pageCount: 0,
-    activePage: 1,
-    fetchState: "NOT_FETCHED",
+    products: {
+      productList: [],
+      totalProductCount: 0,
+      fetchState: fetchStates.NOT_FETCHED,
+      error: "",
+    },
+    pages: {
+      pageCount: 0,
+      activePage: 1,
+    },
+    categories: {
+      categoryList: [],
+      fetchState: fetchStates.NOT_FETCHED,
+      error: "",
+    },
   };
   
   const productReducer = (state = initialState, action) => {
     switch (action.type) {
       case SET_PRODUCT_LIST:
-        return {
-          ...state,
-          productList: [...state.productList, action.payload],
-        };
-      case SET_TOTAL_PRODUCT_COUNT:
-        return {
-          ...state,
-          totalProductCount: state.totalProductCount + 1,
+        return {  ...state,
+          products: action.payload,
         };
       case SET_PAGE_COUNT:
         return {
           ...state,
-          pageCount: action.payload,
+          pages: {
+            ...state.pages,
+            pageCount: action.payload,
+          },
         };
       case SET_ACTIVE_PAGE:
         return {
           ...state,
-          activePage: action.payload,
+          pages: {
+            ...state.pages,
+            activePage: action.payload,
+          },
         };
-      case SET_FETCH_STATE:
-        return {
-          ...state,
-          fetchState: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-  
-  export default productReducer;
+        case SET_CATEGORIES:
+          return {
+            ...state,
+            categories: action.payload,
+          };
+        default:
+          return state;
+      }
+    };
+    
+    export default productReducer;

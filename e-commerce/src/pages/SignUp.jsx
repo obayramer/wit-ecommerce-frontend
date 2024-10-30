@@ -8,7 +8,7 @@ import Header from "../components/layout/Header";
 import axiosInstance from "../api/axiosInstance";
 import Spinner from "../components/Spinner";
 import { fetchRoles } from "../store/actions/rolesActions";
-import { FETCH_STATES } from "../store/reducers/rolesReducer";
+import fetchStates from "../store/fetchStates";
 
 function SignUp({ data }) {
   const {
@@ -64,30 +64,12 @@ const history = useHistory();
     axiosInstance.post("/signup", signUpData)
     .then((response) => {
       setSubmitting(false);
-      toast.warning(`${submission.success}`, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.warning(`${submission.success}`);
       history.goBack();
     })
     .catch((error) => {
       setSubmitting(false);
-      toast.error(`${submission.fail}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.error(`${submission.fail}`);
     });
 };
 
@@ -96,7 +78,7 @@ useEffect(() => {
 }, []);
 
 return (  <div className="SignUp">
-    {fetchState === FETCH_STATES.FETCHED ? (
+   {fetchState === fetchStates.FETCHED ? (
       <div>
            <Header data={data} />
           <div className="bg-info min-h-screen py-10 px-80 sm:p-10">
@@ -418,20 +400,22 @@ return (  <div className="SignUp">
                        ? "blue-button mx-auto flex gap-4 items-center"
                        : "blue-button mx-auto flex gap-4 items-center bg-secondary-focus"
                    }
-                 >
-                   <span>
-                     {isSubmitting && <Spinner className="text-white" />}
-                   </span>
-                   <span>{button}</span>
-                 </button>
-               </form>
-             </div>
+                 >           
+                 <button
+               type="submit"
+               className="text-sm text-white bg-secondary py-2 px-3"
+             >
+               {button}
+             </button>
+               </button>
+             </form>
            </div>
-         ) : (
-           <Spinner page={true} />
-         )}
-       </div>
-     );
-   }
-   
-   export default SignUp;
+         </div>
+       ) : (
+         <Spinner page={true} />
+       )}
+     </div>
+   );
+ }
+ 
+ export default SignUp;
