@@ -15,6 +15,7 @@ import LogIn from "./pages/LogIn";
 import useLocalStorage from "./hooks/useLocalStorage";
 import axiosAuth from "./api/axiosAuth";
 import { setUserSuccess } from "./store/actions/userActions";
+import { fetchCategories } from "./store/actions/productActions";
 
 function App() {
   const language = "en";
@@ -36,7 +37,8 @@ function App() {
         .catch((error) => {
           localStorage.removeItem("token");
         });
-    }
+    } 
+    dispatch(fetchCategories());
   }, []);
 
   return (
@@ -57,11 +59,11 @@ function App() {
         <Route path="/pricing">
           <Pricing data={data} />
         </Route>
-        <Route path="/productlist">
-          <ProductList data={data} />
-        </Route>
-        <Route path="/productlist/:productID">
+        <Route path="/shopping/:category/:product-name-slug/:product-id">
           <Product data={data} />
+        </Route>
+        <Route path="/shopping/:category?">
+          <ProductList data={data} />
         </Route>
         <Route path="/signup">
           <SignUp data={data} />
@@ -85,4 +87,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

@@ -4,7 +4,7 @@ import Spinner from "../components/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { setUser } from "../store/actions/userActions";
-import { FETCH_STATES } from "../store/reducers/userReducer.jsx";
+import fetchStates from "../store/fetchStates";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -35,20 +35,11 @@ function LogIn({ data }) {
   };
 
   useEffect(() => {
-    if (user.fetchState === FETCH_STATES.FETCHED) {
+    if (user.fetchState === fetchStates.FETCHED) {
       setToken(user.user.token);
       history.push("/");
-    } else if (user.fetchState === FETCH_STATES.FETCH_FAILED) {
-      toast.error(`${submission.fail}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+    } else if (user.fetchState === fetchStates.FETCH_FAILED) {
+      toast.error(`${submission.fail}`);
     }
   }, [user]);
 
@@ -116,21 +107,19 @@ function LogIn({ data }) {
           </div>
           <button
             type="submit"
-            disabled={!isValid || user.fetchState === FETCH_STATES.FETCHING}
+            disabled={!isValid || user.fetchState === fetchStates.FETCHING}
             className={
-              !(user.fetchState === FETCH_STATES.FETCHING) && isValid
+              !(user.fetchState === fetchStates.FETCHING) && isValid
                 ? "blue-button mx-auto flex gap-4 items-center"
                 : "blue-button mx-auto flex gap-4 items-center bg-secondary-focus"
             }
           >
-            <span
-              className={
-                user.fetchState === FETCH_STATES.FETCHING ? "" : "hidden"
-              }
+              <button
+              type="submit"
+              className="text-sm text-white bg-secondary py-2 px-3"
             >
-              {<Spinner className="text-white" />}
-            </span>
-            <span>{button}</span>
+              {button}
+            </button>
           </button>
         </form>
       </div>
