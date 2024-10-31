@@ -1,67 +1,71 @@
-  import {
-    faListCheck,
-    faTableCellsLarge,
-  } from "@fortawesome/free-solid-svg-icons";
-  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-  import { useDispatch, useSelector } from "react-redux";
-  import { useEffect, useState } from "react";
-  import { useParams } from "react-router-dom";
-  import { setProductList } from "../../store/actions/productActions";
-  import useQueryParams from "../../hooks/useQueryParams";
-  import Products from "./Products";
-  
-  export default function Shop({ data }) {
-    const products = useSelector((store) => store.product.products);
+import {
+  faListCheck,
+  faTableCellsLarge,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { setProductList } from "../../store/actions/productActions";
+import useQueryParams from "../../hooks/useQueryParams";
+import Products from "./Products";
 
-    const categories = useSelector(
-      (store) => store.product.categories.categoryList
-    );
+export default function Shop({ data }) {
+  const products = useSelector((store) => store.product.products);
+  const categories = useSelector(
+    (store) => store.product.categories.categoryList
+  );
+  const { totalProductCount } = products;
+  const dispatch = useDispatch();
+  const { category } = useParams();
 
-    const { totalProductCount } = products;
-    const dispatch = useDispatch();
-    const { category } = useParams();
+  const [filterParams, setFilterParams] = useState({
+    filter: "",
+    sort: "",
+  });
 
-    const [filterParams, setFilterParams] = useState({
-      filter: "",
-      sort: "",
-    
-    });
+  const [queryParams, setQueryParams] = useQueryParams();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 25;
 
-    const [queryParams, setQueryParams] = useQueryParams();
-
-    const clickHandler = (e) => {
+  const clickHandler = (e) => {
     e.target.classList.add("bg-secondary");
     e.target.classList.add("text-white");
-    };
+  };
 
-    const submitHandler = (e) => {
-      e.preventDefault();
-      setQueryParams(filterParams);
-    };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setQueryParams(filterParams);
+  };
 
-    useEffect(() => {
-      const categoryId = categories.find((c) => c.code == category)?.id;
-      dispatch(setProductList({ ...queryParams, category: categoryId }));
-    }, [queryParams, category]);
+  useEffect(() => {
+    const categoryId = categories.find((c) => c.code == category)?.id;
+    const offset = (currentPage - 1) * itemsPerPage;
+    dispatch(setProductList({ ...queryParams, category: categoryId, limit: itemsPerPage, offset }));
+  }, [queryParams, category, currentPage]);
 
-    return (
-      <div className="Shop">
-         <form
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <div className="Shop">
+      <form
         className="w-3/4 mx-auto py-6 flex justify-between items-center sm:flex-col sm:items-center sm:gap-6"
         onSubmit={submitHandler}
       >
         <p>{data.showing + totalProductCount + data.results}</p>
-          <div className="flex gap-2 items-center">
-            <p>{data.views}</p>
-            <div className="border rounded-md p-2">
-              <FontAwesomeIcon icon={faTableCellsLarge} />
-            </div>
-            <div className="border border-info rounded-md p-4">
-              <FontAwesomeIcon icon={faListCheck} />
-            </div>
+        <div className="flex gap-2 items-center">
+          <p>{data.views}</p>
+          <div className="border rounded-md p-2">
+            <FontAwesomeIcon icon={faTableCellsLarge} />
           </div>
-          <input
-            id="filter"
+          <div className="border border-info rounded-md p-4">
+            <FontAwesomeIcon icon={faListCheck} />
+          </div>
+        </div>
+        <input
+          id="filter"
           name="filter"
           placeholder="Search"
           className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
@@ -69,59 +73,70 @@
             setFilterParams({ ...filterParams, filter: e.target.value });
           }}
         />
-          <div className="flex gap-3">
-            <select
-              id="sort"
-              name="sort"
-              className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
-              defaultValue={data.fopt1}
-              onChange={(e) => {
-                setFilterParams({ ...filterParams, sort: e.target.value });
-              }}
-            >
-                <option value="price:asc">{data.p_asc}</option>
+        <div className="flex gap-3">
+          <select
+            id="sort"
+            name="sort"
+            className="bg-info border border-solid border-neutral rounded-[5px] py-3 pl-4 pr-7"
+            defaultValue=""
+            onChange={(e) => {
+              setFilterParams({ ...filterParams, sort: e.target.value });
+            }}
+          >
+            <option value="price:asc">{data.p_asc}</option>
             <option value="price:desc">{data.p_desc}</option>
             <option value="rating:asc">{data.r_asc}</option>
             <option value="rating:desc">{data.r_desc}</option>
-            </select>
-  
-            <button
+          </select>
+
+          <button
             type="submit"
             className="text-white bg-secondary border-0 border-solid rounded-[5px] py-3 px-5"
           >
-              {data.button}
-            </button>
-          </div>
-          </form>
-          <Products data={products} />
+            {data.button}
+          </button>
+        </div>
+      </form>
+      <Products data={products} />
+
+      {/* Pagination */}
       <div className="mt-8 flex justify-center font-bold text-secondary bg-white w-fit mx-auto border border-solid border-neutral rounded-lg">
         <button
-          className="text-base py-6 px-6 border border-solid border-neutral"
-          onClick={clickHandler}
+          className={`text-base py-6 px-[25px] ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === 1}
+          style={{
+            backgroundColor: currentPage === 1 ? "#23A6F0" : "#FFFFFF",
+            color: currentPage === 1 ? "#FFFFFF" : "#23A6F0"
+          }}
         >
           {data.pagebuttons.first}
         </button>
+
+        {[currentPage - 1, currentPage, currentPage + 1].map((page, index) =>
+          page > 0 && page <= Math.ceil(totalProductCount / itemsPerPage) ? (
+            <button
+              key={index}
+              className={`text-base py-[25px] px-[20px] border border-solid border-neutral ${currentPage === page ? "bg-secondary text-white" : "bg-white text-secondary"}`}
+              onClick={() => handlePageChange(page)}
+              style={{
+                backgroundColor: currentPage === page ? "#23A6F0" : "#FFFFFF",
+                color: currentPage === page ? "#FFFFFF" : "#23A6F0"
+              }}
+            >
+              {page}
+            </button>
+          ) : null
+        )}
+
         <button
-          className="text-base py-6 px-5 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          1
-        </button>
-        <button
-          className="text-base py-6 px-5 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          2
-        </button>
-        <button
-          className="text-base py-6 px-5 border border-solid border-neutral"
-          onClick={clickHandler}
-        >
-          3
-        </button>
-        <button
-          className="text-base py-6 px-6 border border-solid border-neutral"
-          onClick={clickHandler}
+          className={`text-base py-6 px-[25px] ${currentPage === Math.ceil(totalProductCount / itemsPerPage) ? "cursor-not-allowed" : ""}`}
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === Math.ceil(totalProductCount / itemsPerPage)}
+          style={{
+            backgroundColor: currentPage === Math.ceil(totalProductCount / itemsPerPage) ? "#23A6F0" : "#FFFFFF",
+            color: currentPage === Math.ceil(totalProductCount / itemsPerPage) ? "#FFFFFF" : "#23A6F0"
+          }}
         >
           {data.pagebuttons.next}
         </button>

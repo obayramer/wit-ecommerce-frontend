@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 function Categories({ data }) {
@@ -28,13 +28,11 @@ function Categories({ data }) {
             <Link
             className="CategoryCard relative max-h-56 max-w-[18%] overflow-hidden sm:max-w-full sm:max-h-full sm:aspect-square"
             key={cat.id}
-            to={`/shopping/${cat.code}${search}`}
-          >
-              <img
-                src={cat.img}
-                className="object-cover h-full w-full"
-                alt=""
-              />
+            to={`/shopping/${cat.code.slice(0, 1)}-${cat.code.slice(
+              2
+            )}${search}`}
+            >
+              <img src={cat.img} className="object-cover h-full w-full" alt=""/>
             <div className="CategoryCardFilter bg-[#21212140] w-full h-full absolute top-0 right-0"></div>
             <div className="w-full h-full absolute top-0 right-0 text-white flex flex-col justify-center items-center gap-2">
             <h6 className="font-bold">{cat.title}</h6>
