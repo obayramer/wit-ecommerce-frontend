@@ -19,7 +19,7 @@ import fetchStates from "../store/fetchStates";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 
-function Product({ data }) {
+export default function Product({ data }) {
   const { nav, bestseller, details, desc } = data.product;
   const { productID } = useParams();
   const dispatch = useDispatch();
