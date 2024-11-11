@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import Cart from "./pages/Cart";
 import useLocalStorage from "./hooks/useLocalStorage";
 import axiosAuth from "./api/axiosAuth";
 import { setUserSuccess } from "./store/actions/userActions";
@@ -50,6 +51,9 @@ function App() {
         <Route path="/about">
           <About data={data} />
         </Route>
+        <Route path="/cart">
+          <Cart data={data} />
+        </Route>
         <Route path="/contact">
           <Contact data={data} />
         </Route>
@@ -59,10 +63,10 @@ function App() {
         <Route path="/pricing">
           <Pricing data={data} />
         </Route>
-        <Route path="/shopping/:category/:product-name-slug/:product-id">
+        <Route path="/shopping/:sex/:productID/:productNameSlug">
           <Product data={data} />
         </Route>
-        <Route path="/shopping/:category?">
+        <Route path="/shopping/:sex?/:category?">
           <ProductList data={data} />
         </Route>
         <Route path="/signup">
@@ -73,7 +77,7 @@ function App() {
         </Route>
       </Switch>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

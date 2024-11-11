@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { setProductList } from "../../store/actions/productActions";
+import { setProductList, addProducts } from "../../store/actions/productActions";
 import useQueryParams from "../../hooks/useQueryParams";
 import Products from "./Products";
 
@@ -26,27 +26,71 @@ export default function Shop({ data }) {
 
   const [queryParams, setQueryParams] = useQueryParams();
   const [currentPage, setCurrentPage] = useState(1);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const itemsPerPage = 25;
 
-  const clickHandler = (e) => {
-    e.target.classList.add("bg-secondary");
-    e.target.classList.add("text-white");
-  };
-
+  // Handle filter and sort submission
   const submitHandler = (e) => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
 
-  useEffect(() => {
-    const categoryId = categories.find((c) => c.code == category)?.id;
-    const offset = (currentPage - 1) * itemsPerPage;
-    dispatch(setProductList({ ...queryParams, category: categoryId, limit: itemsPerPage, offset }));
-  }, [queryParams, category, currentPage]);
-
+  // Handle page changes via buttons
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  // Handle the scroll event for infinite scroll
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >=
+      document.documentElement.offsetHeight - 200 && hasMore
+    ) {
+      // Trigger next data load
+      loadMoreData();
+    }
+  };
+
+  // Fetch more data when needed
+  const loadMoreData = () => {
+    const categoryId = categories.find((c) => c.code == category)?.id;
+    const newOffset = offset + itemsPerPage;
+    setOffset(newOffset);
+    dispatch(
+      addProducts({
+        ...queryParams,
+        category: categoryId,
+        limit: itemsPerPage,
+        offset: newOffset,
+      })
+    );
+  };
+
+  // Initialize fetching when component mounts or params change
+  useEffect(() => {
+    const categoryId = categories.find((c) => c.code == category)?.id;
+    const offset = (currentPage - 1) * itemsPerPage;
+    dispatch(
+      setProductList({ ...queryParams, category: categoryId, limit: itemsPerPage, offset })
+    );
+    setHasMore(true);
+    setOffset(itemsPerPage);
+  }, [queryParams, category, currentPage]);
+
+  useEffect(() => {
+    if (totalProductCount && products.length >= totalProductCount) {
+      setHasMore(false);
+    }
+  }, [products, totalProductCount]);
+
+  // Scroll listener setup
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [hasMore]);
 
   return (
     <div className="Shop">
@@ -107,7 +151,7 @@ export default function Shop({ data }) {
           disabled={currentPage === 1}
           style={{
             backgroundColor: currentPage === 1 ? "#23A6F0" : "#FFFFFF",
-            color: currentPage === 1 ? "#FFFFFF" : "#23A6F0"
+            color: currentPage === 1 ? "#FFFFFF" : "#23A6F0",
           }}
         >
           {data.pagebuttons.first}
@@ -117,11 +161,15 @@ export default function Shop({ data }) {
           page > 0 && page <= Math.ceil(totalProductCount / itemsPerPage) ? (
             <button
               key={index}
-              className={`text-base py-[25px] px-[20px] border border-solid border-neutral ${currentPage === page ? "bg-secondary text-white" : "bg-white text-secondary"}`}
+              className={`text-base py-[25px] px-[20px] border border-solid border-neutral ${
+                currentPage === page
+                  ? "bg-secondary text-white"
+                  : "bg-white text-secondary"
+              }`}
               onClick={() => handlePageChange(page)}
               style={{
                 backgroundColor: currentPage === page ? "#23A6F0" : "#FFFFFF",
-                color: currentPage === page ? "#FFFFFF" : "#23A6F0"
+                color: currentPage === page ? "#FFFFFF" : "#23A6F0",
               }}
             >
               {page}
@@ -135,7 +183,7 @@ export default function Shop({ data }) {
           disabled={currentPage === Math.ceil(totalProductCount / itemsPerPage)}
           style={{
             backgroundColor: currentPage === Math.ceil(totalProductCount / itemsPerPage) ? "#23A6F0" : "#FFFFFF",
-            color: currentPage === Math.ceil(totalProductCount / itemsPerPage) ? "#FFFFFF" : "#23A6F0"
+            color: currentPage === Math.ceil(totalProductCount / itemsPerPage) ? "#FFFFFF" : "#23A6F0",
           }}
         >
           {data.pagebuttons.next}

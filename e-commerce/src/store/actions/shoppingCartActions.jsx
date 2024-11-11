@@ -4,6 +4,7 @@ export const UPDATE_CART_ITEM_QUANTITY = "UPDATE_CART_ITEM_QUANTITY";
 export const CLEAR_CART = "CLEAR_CART";
 export const SET_PAYMENT_INFO = "SET_PAYMENT_INFO";
 export const SET_ADDRESS_INFO = "SET_ADDRESS_INFO";
+export const SET_CHECK_STATUS = "SET_CHECK_STATUS";
 
 export const addToCart = (item) => ({
   type: ADD_TO_CART,
@@ -15,13 +16,18 @@ export const removeFromCart = (productId) => ({
   payload: productId,
 });
 
-export const updateCartItemQuantity = (productId, newQuantity) => ({
+export const updateCartItemQuantity = (productId, isAdding) => ({
   type: UPDATE_CART_ITEM_QUANTITY,
-  payload: { productId, newQuantity },
+  payload: { productId, isAdding },
 });
 
 export const clearCart = () => ({
   type: CLEAR_CART,
+});
+
+export const setCheckStatus = (productID, isChecked) => ({
+  type: SET_CHECK_STATUS,
+  payload: { productID, isChecked },
 });
 
 export const setPaymentInfo = (paymentInfo) => ({

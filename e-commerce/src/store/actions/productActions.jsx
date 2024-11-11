@@ -2,9 +2,8 @@ import axiosInstance from "../../api/axiosInstance";
 import fetchStates from "../fetchStates";
 
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
-export const SET_PAGE_COUNT = "SET_PAGE_COUNT";
-export const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
 export const SET_CATEGORIES = "SET_CATEGORIES";
+export const ADD_PRODUCTS = "ADD_PRODUCTS";
 
 export const setProductList = (params) => {
   return (dispatch) => {
@@ -17,8 +16,9 @@ export const setProductList = (params) => {
         error: "",
       },
     });
+    
     axiosInstance
-    .get("/products", { params })
+      .get("/products", { params })
       .then((response) => {
         dispatch({
           type: SET_PRODUCT_LIST,
@@ -44,16 +44,48 @@ export const setProductList = (params) => {
   };
 };
 
-export const setPageCount = (count) => {
-  return {
-    type: SET_PAGE_COUNT,
-    payload: count,
+export const addProducts = (params) => {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_PRODUCTS,
+      payload: {
+        productList: [],
+        totalProductCount: 0,
+        fetchState: fetchStates.FETCHING,
+        error: "",
+      },
+    });
+
+    axiosInstance
+      .get("/products", { params })
+      .then((response) => {
+        dispatch({
+          type: ADD_PRODUCTS,
+          payload: {
+            productList: response.data.products,
+            totalProductCount: response.data.total,
+            fetchState: fetchStates.FETCHED,
+            error: "",
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: ADD_PRODUCTS,
+          payload: {
+            productList: [],
+            totalProductCount: 0,
+            fetchState: fetchStates.FETCH_FAILED,
+            error: error.message,
+          },
+        });
+      });
   };
 };
 
 export const setActivePage = (page) => {
   return {
-    type: SET_ACTIVE_PAGE,
+    type: "SET_ACTIVE_PAGE",
     payload: page,
   };
 };
@@ -68,6 +100,7 @@ export const fetchCategories = () => {
         error: "",
       },
     });
+
     axiosInstance
       .get("/categories")
       .then((response) => {
