@@ -1,7 +1,6 @@
 import {
-    SET_ACTIVE_PAGE,
+    ADD_PRODUCTS,
     SET_CATEGORIES,
-    SET_PAGE_COUNT,
     SET_PRODUCT_LIST,
   } from "../actions/productActions.jsx";
   import fetchStates from "../fetchStates.jsx";
@@ -29,20 +28,17 @@ import {
         return {  ...state,
           products: action.payload,
         };
-      case SET_PAGE_COUNT:
-        return {
+        case ADD_PRODUCTS:
+          return {
           ...state,
-          pages: {
-            ...state.pages,
-            pageCount: action.payload,
-          },
-        };
-      case SET_ACTIVE_PAGE:
-        return {
-          ...state,
-          pages: {
-            ...state.pages,
-            activePage: action.payload,
+          products: {
+            productList: [
+              ...state.products.productList,
+              ...action.payload.productList,
+            ],
+            totalProductCount: action.payload.totalProductCount,
+            fetchState: action.payload.fetchState,
+            error: action.payload.error,
           },
         };
         case SET_CATEGORIES:

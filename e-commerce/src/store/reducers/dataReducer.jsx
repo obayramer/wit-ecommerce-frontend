@@ -3,51 +3,6 @@ export default function dataReducer() {
       en: {
         brand: "Bandage",
   
-        about: {
-          banner: {
-            subtitle: "ABOUT COMPANY",
-            title: "ABOUT US",
-            description:
-              "We know how large objects will act, but things on a small scale",
-            button: "Get Quote Now",
-            img: "./about/banner.png",
-          },
-          section2: {
-            subtitle: "Problems trying",
-            title:
-              "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.",
-            description:
-              "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics",
-          },
-          statistics: [
-            {
-              metric: "15K",
-              title: "Happy Customers",
-            },
-            {
-              metric: "150K",
-              title: "Monthly Visitors",
-            },
-            {
-              metric: "15",
-              title: "Countries  Worldwide",
-            },
-            {
-              metric: "100+",
-              title: "Top Partners",
-            },
-          ],
-          video: "./about/videocard.png",
-          work: {
-            subtitle: "WORK WITH US",
-            title: "Now Let’s Grow Yours",
-            description:
-              "The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th",
-            button: "Button",
-            img: "./about/work.png",
-          },
-        },
-  
         categories: {
           title: "Shop",
           prev: "Home",
@@ -248,24 +203,6 @@ export default function dataReducer() {
         },
   
         hero: {
-          carousel: [
-            {
-              img: "./carousel/first-3x.png",
-              subtitle: "SUMMER 2024",
-              title: "NEW COLLECTION",
-              description1: "We know how large objects will act,",
-              description2: "but things on a small scale.",
-              button: "SHOP NOW",
-            },
-            {
-              img: "./carousel/second-3x.png",
-              season: "SUMMER 2024",
-              header: "-30% DISCOUNT",
-              description1: "We know how large objects will act,",
-              description2: "but things on a small scale.",
-              button: "READ MORE",
-            },
-          ],
           header: {
             info: {
               phone: "(225) 555-0118",
@@ -435,115 +372,6 @@ export default function dataReducer() {
               },
             ],
             footnote: "Haven’t got your answer? Contact our support",
-          },
-        },
-  
-        product: {
-          details: {
-            history: {
-              prev: "Home",
-              current: "Shop",
-            },
-            images: {
-              img1: "./product/cover/cover1.jpg",
-              img2: "./product/cover/cover2.jpg",
-            },
-            name: "Floating Phone",
-            rating: "4",
-            ratingno: "10 Reviews",
-            price: "$1,139.33",
-            availability: {
-              av: "Availability : ",
-              status: "In Stock",
-            },
-            description:
-              "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
-            button: "Select Options",
-          },
-  
-          nav: ["Description", "Additional Information", "Reviews"],
-          desc: {
-            img: "./product/cover/desc.png",
-            title1: "the quick fox jumps over",
-            p: [
-              "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
-              "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
-              "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
-            ],
-            title2: "the quick fox jumps over",
-            b1: [
-              "the quick fox jumps over the lazy dog",
-              "the quick fox jumps over the lazy dog",
-              "the quick fox jumps over the lazy dog",
-              "the quick fox jumps over the lazy dog",
-            ],
-            title3: "the quick fox jumps over",
-            b2: [
-              "the quick fox jumps over the lazy dog",
-              "the quick fox jumps over the lazy dog",
-              "the quick fox jumps over the lazy dog",
-            ],
-          },
-          bestseller: {
-            title: "BESTSELLER PRODUCTS",
-            products: [
-              {
-                img: "./product/bestseller/p1.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p2.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p3.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p4.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p5.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p6.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p1.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-              {
-                img: "./product/bestseller/p2.png",
-                header: "Graphic Design",
-                department: "English Department",
-                oldprice: "$16.48",
-                newprice: "$6.48",
-              },
-            ],
           },
         },
   
